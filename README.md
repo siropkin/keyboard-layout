@@ -1,5 +1,5 @@
 # 🎹 KeyboardLayout
-**Cross-platform solution for detecting keyboard layouts and languages on Windows, macOS, and Linux**
+**Cross-platform library for detecting keyboard layouts and languages on Windows, macOS, and Linux.**
 
 
 ## 🚀 Features
@@ -13,14 +13,14 @@ Add the following dependency to your `build.gradle` file:
 
 ```groovy
 dependencies {
-    implementation 'com.github.siropkin.keyboardLayout:1.0.0'
+    implementation 'io.github.siropkin.keyboardLayout:1.0.0'
 }
 ```
 
 
 ## 🛠️ Usage
 ```kotlin
-import com.github.siropkin.keyboardLayout
+import io.github.siropkin.keyboardLayout
 val keyboardLayout = KeyboardLayout()
 val keyboardLayoutInfo = keyboardLayout.getInfo()
 println("Layout: ${keyboardLayoutInfo.toString()}, Language: ${keyboardLayoutInfo.language}, Country: ${keyboardLayoutInfo.country}, Variant: ${keyboardLayoutInfo.variant}")
