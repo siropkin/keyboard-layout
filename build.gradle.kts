@@ -68,10 +68,7 @@ dependencies {
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
-    // Add JNA dependency
     implementation("net.java.dev.jna:jna:5.14.0")
-
-    // Add JNA Platform dependency
     implementation("net.java.dev.jna:jna-platform:5.14.0")
 }
 

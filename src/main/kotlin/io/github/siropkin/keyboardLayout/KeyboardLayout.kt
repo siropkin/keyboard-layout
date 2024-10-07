@@ -230,7 +230,7 @@ class KeyboardLayout {
         return KeyboardLayoutInfo(locale.language, locale.country, variant)
     }
 
-    private fun executeNativeCommand(command: Array<String>): String {
+    fun executeNativeCommand(command: Array<String>): String {
         return try {
             val process = Runtime.getRuntime().exec(command)
             process.waitFor()

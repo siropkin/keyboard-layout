@@ -20,7 +20,7 @@ dependencies {
 
 ## 🛠️ Usage
 ```kotlin
-import io.github.siropkin.keyboardLayout.*
+import io.github.siropkin.keyboardLayout.KeyboardLayout
 val keyboardLayout = KeyboardLayout()
 val keyboardLayoutInfo = keyboardLayout.getInfo()
 println("Layout: ${keyboardLayoutInfo.toString()}, Language: ${keyboardLayoutInfo.language}, Country: ${keyboardLayoutInfo.country}, Variant: ${keyboardLayoutInfo.variant}")

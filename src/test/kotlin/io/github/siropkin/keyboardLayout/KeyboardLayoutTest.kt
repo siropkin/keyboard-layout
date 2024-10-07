@@ -1,47 +1,48 @@
-import io.github.siropkin.keyboardLayout.KeyboardLayout
-import io.github.siropkin.keyboardLayout.KeyboardLayoutInfo
+package io.github.siropkin.keyboardLayout
+
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
+import org.junit.jupiter.api.condition.EnabledOnOs
+import org.junit.jupiter.api.condition.OS
 import org.mockito.Mockito
-import org.mockito.junit.jupiter.MockitoExtension
+import java.awt.im.InputContext
 
-@ExtendWith(MockitoExtension::class)
 class KeyboardLayoutTest {
 
     @Test
-    fun testGetInfoOnWindows() {
-        val keyboardLayout = Mockito.mock(KeyboardLayout::class.java)
-        val expectedInfo = KeyboardLayoutInfo("en", "US", "00000409")
-        Mockito.`when`(keyboardLayout.getInfo()).thenReturn(expectedInfo)
+    @EnabledOnOs(OS.WINDOWS)
+    fun testGetWindowsKeyboardLayout() {
+        val keyboardLayout = Mockito.spy(KeyboardLayout())
+        Mockito.doReturn("00000409").`when`(keyboardLayout).executeNativeCommand(arrayOf("some", "command"))
 
         val info = keyboardLayout.getInfo()
         assertEquals("en", info.language)
         assertEquals("US", info.country)
-        assertEquals("00000409", info.variant)
+        assertEquals("US", info.variant)
     }
 
     @Test
-    fun testGetInfoOnMac() {
-        val keyboardLayout = Mockito.mock(KeyboardLayout::class.java)
-        val expectedInfo = KeyboardLayoutInfo("en", "US", "UserDefined_252")
-        Mockito.`when`(keyboardLayout.getInfo()).thenReturn(expectedInfo)
+    @EnabledOnOs(OS.MAC)
+    fun testGetMacKeyboardLayout() {
+        val keyboardLayout = KeyboardLayout()
+        val inputContext = Mockito.mock(InputContext::class.java)
+        Mockito.`when`(inputContext.locale).thenReturn(java.util.Locale("en", "US", "UserDefined_com.sogou.inputmethod.pinyin"))
 
         val info = keyboardLayout.getInfo()
         assertEquals("en", info.language)
         assertEquals("US", info.country)
-        assertEquals("UserDefined_252", info.variant)
+        assertEquals("ZH", info.variant)
     }
 
     @Test
-    fun testGetInfoOnLinux() {
-        val keyboardLayout = Mockito.mock(KeyboardLayout::class.java)
-        val expectedInfo = KeyboardLayoutInfo("en", "US", "")
-        Mockito.`when`(keyboardLayout.getInfo()).thenReturn(expectedInfo)
+    @EnabledOnOs(OS.LINUX)
+    fun testGetLinuxKeyboardLayout() {
+        val keyboardLayout = Mockito.spy(KeyboardLayout())
+        Mockito.doReturn("us").`when`(keyboardLayout).executeNativeCommand(arrayOf("setxkbmap", "-query"))
 
         val info = keyboardLayout.getInfo()
-        assertEquals("en", info.language)
-        assertEquals("US", info.country)
+        assertEquals("", info.language)
+        assertEquals("us", info.country)
         assertEquals("", info.variant)
     }
 }
