@@ -11,7 +11,7 @@ mavenPublishing {
     coordinates(
         groupId = "io.github.siropkin",
         artifactId = "keyboard-layout",
-        version = "1.0.0"
+        version = "1.0.1"
     )
 
     // Configure POM metadata for the published artifact
@@ -55,11 +55,11 @@ repositories {
 }
 
 dependencies {
-    // Use the Kotlin JUnit 5 integration.
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-
     // Use the JUnit 5 integration.
     testImplementation(libs.junit.jupiter.engine)
+
+    // Use the Kotlin JUnit 5 integration.
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 
     // Add Mockito dependency
     testImplementation("org.mockito:mockito-inline:5.2.0")
@@ -67,12 +67,6 @@ dependencies {
     testImplementation("org.mockito:mockito-junit-jupiter:5.12.0")
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-
-    // This dependency is exported to consumers, that is to say found on their compile classpath.
-    api(libs.commons.math3)
-
-    // This dependency is used internally, and not exposed to consumers on their own compile classpath.
-    implementation(libs.guava)
 
     // Add JNA dependency
     implementation("net.java.dev.jna:jna:5.14.0")
