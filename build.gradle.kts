@@ -11,7 +11,7 @@ mavenPublishing {
     coordinates(
         groupId = "io.github.siropkin",
         artifactId = "keyboard-layout",
-        version = "1.0.1"
+        version = "1.0.2"
     )
 
     // Configure POM metadata for the published artifact
@@ -78,7 +78,7 @@ dependencies {
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(17)
     }
 }
 
