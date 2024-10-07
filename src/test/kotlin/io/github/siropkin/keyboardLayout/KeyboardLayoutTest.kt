@@ -1,5 +1,5 @@
-import com.github.siropkin.keyboardLayout.KeyboardLayout
-import com.github.siropkin.keyboardLayout.KeyboardLayoutInfo
+import io.github.siropkin.keyboardLayout.KeyboardLayout
+import io.github.siropkin.keyboardLayout.KeyboardLayoutInfo
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith

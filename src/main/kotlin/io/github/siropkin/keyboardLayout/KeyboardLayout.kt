@@ -1,4 +1,4 @@
-package com.github.siropkin.keyboardLayout
+package io.github.siropkin.keyboardLayout
 
 import com.sun.jna.Platform
 import com.sun.jna.platform.win32.User32
