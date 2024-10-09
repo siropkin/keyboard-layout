@@ -1,7 +1,9 @@
 import com.vanniktech.maven.publish.SonatypeHost
+import com.vanniktech.maven.publish.JavaLibrary
+import com.vanniktech.maven.publish.JavadocJar
 
 plugins {
-    id("java")
+    id("java-library")
     id("com.vanniktech.maven.publish") version "0.29.0"
 }
 
@@ -10,21 +12,15 @@ repositories {
 }
 
 dependencies {
-    // Use the JUnit 5 integration.
     testImplementation(libs.junit.jupiter.engine)
+    testImplementation(libs.kotlin.test.junit5)
+    testImplementation(libs.mockito.inline)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.junit.jupiter)
+    testRuntimeOnly(libs.junit.platform.launcher)
 
-    // Use the Kotlin JUnit 5 integration.
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-
-    // Add Mockito dependency
-    testImplementation("org.mockito:mockito-inline:5.2.0")
-    testImplementation("org.mockito:mockito-core:5.14.1")
-    testImplementation("org.mockito:mockito-junit-jupiter:5.12.0")
-
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-
-    implementation("net.java.dev.jna:jna:5.14.0")
-    implementation("net.java.dev.jna:jna-platform:5.14.0")
+    implementation(libs.jna)
+    implementation(libs.jna.platform)
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -35,6 +31,17 @@ java {
 }
 
 mavenPublishing {
+    // Define configuration for the published artifact
+    configure(JavaLibrary(
+        // configures the -javadoc artifact, possible values:
+        // - `JavadocJar.None()` don't publish this artifact
+        // - `JavadocJar.Empty()` publish an emprt jar
+        // - `JavadocJar.Javadoc()` to publish standard javadocs
+        javadocJar = JavadocJar.Javadoc(),
+        // whether to publish a sources jar
+        sourcesJar = true,
+    ))
+
     // Define coordinates for the published artifact
     coordinates(
         groupId = "io.github.siropkin",
