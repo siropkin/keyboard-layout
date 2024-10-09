@@ -1,12 +1,17 @@
 [versions]
+# libraries
 junit-jupiter-engine = "5.10.2"
 kotlin-test-junit5 = "1.8.0"
 mockito-inline = "5.2.0"
 mockito-core = "5.14.1"
 mockito-junit-jupiter = "5.12.0"
-junit-platform-launcher = "1.9.25"
-jna = "5.14.0"
-jna-platform = "5.14.0"
+junit-platform-launcher = "1.11.2"
+jna = "5.15.0"
+jna-platform = "5.15.0"
+
+# plugins
+mavenPublishVanniktech = "0.29.0"
+jvm = "1.9.23"
 
 [libraries]
 junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit-jupiter-engine" }
@@ -17,3 +22,7 @@ mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter", version.
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform-launcher" }
 jna = { module = "net.java.dev.jna:jna", version.ref = "jna" }
 jna-platform = { module = "net.java.dev.jna:jna-platform", version.ref = "jna-platform" }
+
+[plugins]
+mavenPublishVanniktech = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublishVanniktech" }
+jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jvm" }

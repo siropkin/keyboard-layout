@@ -3,8 +3,9 @@ import com.vanniktech.maven.publish.JavaLibrary
 import com.vanniktech.maven.publish.JavadocJar
 
 plugins {
-    id("java")
-    id("com.vanniktech.maven.publish") version "0.29.0"
+    alias(libs.plugins.jvm)
+    `java-library`
+    alias(libs.plugins.mavenPublishVanniktech)
 }
 
 repositories {
@@ -17,6 +18,7 @@ dependencies {
     testImplementation(libs.mockito.inline)
     testImplementation(libs.mockito.core)
     testImplementation(libs.mockito.junit.jupiter)
+
     testRuntimeOnly(libs.junit.platform.launcher)
 
     implementation(libs.jna)
@@ -46,7 +48,7 @@ mavenPublishing {
     coordinates(
         groupId = "io.github.siropkin",
         artifactId = "keyboard-layout",
-        version = "1.0.4"
+        version = "1.0.5"
     )
 
     // Configure POM metadata for the published artifact
